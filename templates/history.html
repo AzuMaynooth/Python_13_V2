@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Operaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Historial de Operaciones</h1>
+
+        <!-- Filtros de fecha -->
+        <div class="date-filters">
+            <form method="POST" action="{{ url_for('history') }}">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="start_date" class="form-label">Fecha de inicio</label>
+                        <input type="text" class="form-control" id="start_date" name="start_date" placeholder="dd-mm-yyyy"
+                               value="{{ start_date.strftime('%d-%m-%Y') if start_date else '' }}">
+                    </div>
+                    <div class="col">
+                        <label for="end_date" class="form-label">Fecha de fin</label>
+                        <input type="text" class="form-control" id="end_date" name="end_date" placeholder="dd-mm-yyyy"
+                               value="{{ end_date.strftime('%d-%m-%Y') if end_date else '' }}">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Mensaje de flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-{{ messages[0][0] }}">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Mostrar historial solo si se ha aplicado el filtro -->
+        {% if show_table %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>adte</th>
+                        <th>Product</th>
+                        <th>Amount</th>
+                        <th>Balance after operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if operation_history %}
+                        {% for op in operation_history %}
+                            <tr>
+                                <td>{{ op['type'] }}</td>
+                                <td>{{ op['date'] }}</td>
+                                <td>{{ op['product'] if op['product'] else '-' }}</td>
+                                <td>{{ op['amount'] }}€</td>
+                                <td>{{ op['new_balance'] }}€</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">No transactions found/td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        {% endif %}
+
+        <!-- Botón de volver al índice -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn-return">Return to main menu</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-5">
+            <p>Autor: Azucena Jimenez Castaneda<br>
+            <a href="mailto:hege@example.com">xxx@example.com</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>

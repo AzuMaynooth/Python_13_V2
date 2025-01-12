@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale Form</title>
+    <!-- Icon for web -->
+    <link rel="Icon" href="{{ url_for('static', filename='img/Logo.PNG') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Sale Form</h1>
+        </header>
+
+        <!-- Record information -->
+        <form action="{{ url_for('sale_form') }}" method="POST">
+            <div class="form-container">
+                <!-- Dropdown menu for products it will populated the price automatically -->
+                <div class="form-group">
+                    <label for="product-name">Product Name</label>
+                    <select id="product-name" name="product_name" class="form-input" onchange="updateProductDetails()" required>
+                        <option value="" disabled selected>Select a product</option>
+                        {% for item in inventory %}
+                            <option value="{{ item.product_name }}" data-price="{{ item.unit_price }}">
+                                {{ item.product_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Box to show the product price selected -->
+                <div class="form-group">
+                    <label for="unit-price">Unit Price (€)</label>
+                    <input type="number" id="unit-price" name="unit_price" class="form-input" readonly>
+                </div>
+
+                <!-- Box to add quantity -->
+                <div class="form-group">
+                    <label for="number-of-pieces">Number of Pieces</label>
+                    <input type="number" id="number-of-pieces" name="number_of_pieces" class="form-input" required>
+                </div>
+            </div>
+
+            <!-- Submit and return buttons -->
+            <section class="button-container">
+                <button type="submit" class="btn-primary">Submit Sale</button>
+                <a href="{{ url_for('index') }}" class="btn-return">Return to main menu</a>
+            </section>
+        </form>
+
+        <!-- Success or error messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <footer>
+            <p>Author: Azucena Jimenez Castaneda<br>
+            <a href="mailto:hege@example.com">xxx@example.com</a></p>
+        </footer>
+    </div>
+
+     <!-- The <script> section contains JavaScript code that automatically updates the product price in the form when the user selects a product from the dropdown. This enhances the interactivity and accuracy of the form without requiring additional user input. -->
+    <script>
+        // Get the selected element from the dropdown.
+        function updateProductDetails() {
+            // Obtener el elemento seleccionado del desplegable
+            const productSelect = document.getElementById('product-name');
+            const selectedOption = productSelect.options[productSelect.selectedIndex];
+
+            // Get the product price from the data-price attribute.
+            const price = selectedOption.getAttribute('data-price');
+
+            // pdate the price field with the corresponding value.
+            document.getElementById('unit-price').value = price || '';
+        }
+    </script>
+</body>
+</html>

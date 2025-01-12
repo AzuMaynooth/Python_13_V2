@@ -1,0 +1,287 @@
+/* Additional custom styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1; /* Toma todo el espacio disponible */
+    display: flex;
+    flex-direction: column;
+        }
+        header, main {
+            padding: 20px;
+        }
+        .balance-section, .inventory-section {
+            margin-top: 20px;
+        }
+        .balance-section h2, .inventory-section h2 {
+            margin-bottom: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn-primary {
+            margin: 10px;
+        }
+         /* Añade esto a tu CSS existente */
+    html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+    body {
+        font-family: 'Arial';
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+
+
+    main {
+        flex: 1;
+    }
+
+   /* Empuja el footer hacia el final */
+footer {
+    margin-top: auto; /* Empuja el footer hacia la parte inferior */
+    text-align: center;
+    background-color: #f8f8f8; /* Color de fondo opcional */
+    padding: 10px;
+    border-top: 1px solid #ddd; /* Línea superior opcional */
+}
+
+
+    /* Botón primario */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover */
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Efecto clic */
+.btn-primary:active {
+    background-color: #004085;
+    transform: scale(0.95);
+}
+
+
+
+/* Botón return */
+.btn-return {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #bf00ff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efecto hover */
+.btn-return:hover {
+    background-color: #b30080;
+    transform: scale(1.05);
+}
+
+/* Efecto clic */
+.btn-return:active {
+    background-color: #85007e;
+    transform: scale(0.95);
+}
+
+
+
+/* Contenedor del formulario */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada grupo de entrada */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Estilo para las etiquetas */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Estilo para los campos de entrada */
+.form-input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Efectos al enfocar */
+.form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+
+/* MOSTARR ERRORES EN FLASK */
+
+.flash {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.flash.error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.flash.success {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina espacios entre celdas */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Línea de separación entre filas */
+}
+
+th {
+    background-color: #f2f2f2; /* Fondo gris claro para los encabezados */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el ratón por una fila */
+}
+
+/* Asegura que los elementos no se pisen */
+.history-section {
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* Estilo para el mensaje cuando no hay operaciones */
+p {
+    font-size: 18px;
+    color: #888;
+}
+
+
+
+/* Estilo para los campos de formulario de fechas */
+.date-filters {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;  /* Fondo suave */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Aseguramos que los inputs estén alineados en una fila */
+.date-filters .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Aseguramos que las columnas tengan el mismo tamaño */
+.date-filters .col {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.date-filters .col:last-child {
+    margin-right: 0;
+}
+
+/* Estilos para los inputs */
+.date-filters input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilo al enfocar los campos */
+.date-filters input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilo para el botón */
+.date-filters button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+/* Efecto hover */
+.date-filters button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Efecto clic */
+.date-filters button:active {
+    background-color: #004085;
+    transform: scale(0.95);
+}

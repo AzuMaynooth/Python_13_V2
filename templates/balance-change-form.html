@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Change Form</title>
+    <!-- Icon for web -->
+    <link rel="Icon" href="{{ url_for('static', filename='img/Logo.PNG') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Balance Change Form</h1>
+        </header>
+
+        <!-- Mostrar balance actual -->
+        <section class="balance-section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Current Account Balance</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Current Account Balance:</strong> <span id="account-balance">{{ balance }} €</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario para cambiar el saldo -->
+        <form action="{{ url_for('balance_change_form') }}" method="POST">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="operation-type">Operation Type</label>
+                    <select id="operation-type" name="operation_type" class="form-input" required>
+                        <option value="">Select Operation</option>
+                        <option value="add">Add</option>
+                        <option value="subtract">Subtract</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="change-value">Change Value (€)</label>
+                    <input type="number" id="change-value" name="change_value" class="form-input" required>
+                </div>
+            </div>
+
+            <!-- Botones para enviar y regresar -->
+            <section class="button-container">
+                <button type="submit" class="btn-primary">Submit Operation</button>
+                <a href="{{ url_for('index') }}" class="btn-return">Go back to Home</a>
+            </section>
+        </form>
+
+        <!-- Mostrar mensajes de error o éxito -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flashes">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <footer>
+            <p>Author: Azucena Jimenez Castaneda<br>
+            <a href="mailto:hege@example.com">xxx@example.com</a></p>
+        </footer>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="{{ url_for('static', filename='js/form-validation.js') }}"></script>
+
+</body>
+</html>
